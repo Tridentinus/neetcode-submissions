@@ -1,0 +1,27 @@
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        s = ""
+
+        for st in strs:
+            s += str(len(st)) + "#" + st
+        return(s)
+        
+    def decode(self, s: str) -> List[str]:
+        strs = []
+        i = 0
+        while i < len(s):
+            j = i
+            while s[j] != '#':
+                j += 1
+            span = int(s[i:j])
+            i = j +1
+            if span == 0:
+                st = ""
+            else:
+                st = s[i:i+span]
+            strs.append(st)
+            i+=span
+            
+        return strs
+        
